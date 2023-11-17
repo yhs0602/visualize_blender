@@ -36,7 +36,7 @@ def clean_mesh(path: str):
     print(f"Saved the object with the most vertices to cleaned_ply/{out_ply_name}")
 
 
-if __name__ == '__main__':
-    for file in os.listdir("done_ply"):
+if __name__ == "__main__":
+    for file in os.listdir("."):
         if file.endswith(".ply"):
-            clean_mesh(f"done_ply/{file}")
+            clean_mesh(f"{file}")
