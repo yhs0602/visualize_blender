@@ -134,7 +134,7 @@ if not DEBUG:
 out_data["frames"] = []
 
 b_empty.rotation_euler = CIRCLE_FIXED_START
-b_empty.rotation_euler[0] = CIRCLE_FIXED_START[0] + vertical_diff  # 0 + 0.7
+b_empty.rotati  on_euler[0] = CIRCLE_FIXED_START[0] + vertical_diff  # 0 + 0.7
 
 for i in range(0, VIEWS):
     if DEBUG:

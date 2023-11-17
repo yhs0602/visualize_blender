@@ -13,17 +13,23 @@ blender_nums = {
     "ship": 144,
     "mic": 144,
     "chair": 64,
+    "materials": 152,
 }
 
 if __name__ == "__main__":
+    # render_mesh(
+    #     "blender_ply/materials.ply",
+    #     blender_num=blender_nums["materials"],
+    # )
     # for each blender plies
-    for file in os.listdir("cleaned_ply"):
-        if file.endswith(".ply") and not file.startswith("zdtu"):
+    for file in os.listdir("blender_ply"):
+        if file.endswith("chair.ply") or file.endswith("mic.ply"):
             print(file)
-            obj = file.split("-")[-1].split("_")[0]
+            # obj = file.split("-")[-1].split("_")[0]
+            obj = file.split(".")[0]
             print(obj)
             render_mesh(
-                filename=f"cleaned_ply/{file}",
+                filename=f"blender_ply/{file}",
                 blender_num=blender_nums[obj],
                 # camera_angle_x=camera_angle_x
             )

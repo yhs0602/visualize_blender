@@ -30,8 +30,37 @@ def render_mesh(
         ]
     )
     mesh = mesh.rotate(rotate_matrix, center=mesh.get_center())
-    # mesh = mesh.transform(transform_matrix)
+    # transform_matrix = np.array(
+    #     [
+    #         [
+    #             0.9297775030136108,
+    #             0.1426766961812973,
+    #             -0.339348167181015,
+    #             -1.3679561614990234
+    #         ],
+    #         [
+    #             -0.36812204122543335,
+    #             0.36036309599876404,
+    #             -0.8571024537086487,
+    #             -3.4550905227661133
+    #         ],
+    #         [
+    #             7.450580596923828e-09,
+    #             0.9218361377716064,
+    #             0.38757991790771484,
+    #             1.5623846054077148
+    #         ],
+    #         [
+    #             0.0,
+    #             0.0,
+    #             0.0,
+    #             1.0
+    #         ]
+    #     ]
+    # )
     mesh = mesh.transform(blender_to_open3d)  #
+    # mesh = mesh.transform(transform_matrix)
+    # mesh.paint_uniform_color([0.8, 0.8, 0.8])
     mesh.compute_vertex_normals()
     # Render the mesh
     vis = o3d.visualization.Visualizer()
@@ -46,6 +75,6 @@ def render_mesh(
 
 if __name__ == "__main__":
     render_mesh(
-        "uncert_neus-acc-frontier-dist-200k2k-precropW12-total20-mic_new.ply",
+        "cleaned_ply/uncert_neus-acc-frontier-dist-200k2k-precropW12-total20-mic_new_cleaned.ply",
         blender_num=144,
     )

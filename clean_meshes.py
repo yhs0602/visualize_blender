@@ -38,5 +38,5 @@ def clean_mesh(path: str):
 
 if __name__ == "__main__":
     for file in os.listdir("."):
-        if file.endswith(".ply"):
+        if file.endswith("new.ply"):
             clean_mesh(f"{file}")
