@@ -12,7 +12,7 @@ def render_dtu(filename: str):
     # test_indices = [1, 9, 12, 15, 24, 27, 32, 35, 42, 46]
     # image_42
 
-    mesh = o3d.io.read_triangle_mesh(filename)
+    point_cloud = o3d.io.read_point_cloud(filename)
     print("Loaded mesh")
     pos_mat = np.array(
         [
@@ -44,8 +44,20 @@ def render_dtu(filename: str):
     )
     # mesh = mesh.transform(pos_mat)
     # mesh = mesh.transform(cam_to_world)
-    mesh = mesh.transform(blender_to_open3d)  #
+    print("Creating from point cloud")
+    tetra_mesh, pt_map = o3d.geometry.TetraMesh.create_from_point_cloud(point_cloud)
+    alpha = 0.8
+    print(f"alpha={alpha:.3f}")
+    print("Creating from point cloud alpha shape")
+    mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_alpha_shape(
+        point_cloud, alpha, tetra_mesh, pt_map
+    )
+    print("Computing vertex normals")
     mesh.compute_vertex_normals()
+    # o3d.visualization.draw_geometries([mesh], mesh_show_back_face=True)
+
+    # point_cloud = point_cloud.transform(blender_to_open3d)  #
+    # mesh.compute_vertex_normals()
     # Render the mesh
     vis = o3d.visualization.Visualizer()
     # width = 384
@@ -102,7 +114,7 @@ def render_dtu(filename: str):
 
 
 if __name__ == "__main__":
-    for file in os.listdir("dtu20_cleaned"):
-        if file.endswith("cleaned.ply"):
+    for file in os.listdir("dtu_points"):
+        if file.endswith(".ply"):
             print(file)
-            render_dtu(f"dtu20_cleaned/{file}")
+            render_dtu(f"dtu_points/{file}")

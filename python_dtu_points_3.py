@@ -12,7 +12,7 @@ def render_dtu(filename: str):
     # test_indices = [1, 9, 12, 15, 24, 27, 32, 35, 42, 46]
     # image_42
 
-    mesh = o3d.io.read_triangle_mesh(filename)
+    point_cloud = o3d.io.read_point_cloud(filename)
     print("Loaded mesh")
     pos_mat = np.array(
         [
@@ -44,8 +44,19 @@ def render_dtu(filename: str):
     )
     # mesh = mesh.transform(pos_mat)
     # mesh = mesh.transform(cam_to_world)
-    mesh = mesh.transform(blender_to_open3d)  #
+    print("run Poisson surface reconstruction")
+    with o3d.utility.VerbosityContextManager(o3d.utility.VerbosityLevel.Debug) as cm:
+        mesh, densities = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(
+            point_cloud, depth=9, n_threads=1
+        )
+    print(mesh)
+    # o3d.visualization.draw_geometries([pcd, rec_mesh])
+    print("Computing vertex normals")
     mesh.compute_vertex_normals()
+    # o3d.visualization.draw_geometries([mesh], mesh_show_back_face=True)
+
+    # point_cloud = point_cloud.transform(blender_to_open3d)  #
+    # mesh.compute_vertex_normals()
     # Render the mesh
     vis = o3d.visualization.Visualizer()
     # width = 384
@@ -102,7 +113,7 @@ def render_dtu(filename: str):
 
 
 if __name__ == "__main__":
-    for file in os.listdir("dtu20_cleaned"):
-        if file.endswith("cleaned.ply"):
+    for file in os.listdir("dtu_points"):
+        if file.endswith("97_total.ply"):
             print(file)
-            render_dtu(f"dtu20_cleaned/{file}")
+            render_dtu(f"dtu_points/{file}")
