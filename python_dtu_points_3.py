@@ -114,6 +114,6 @@ def render_dtu(filename: str):
 
 if __name__ == "__main__":
     for file in os.listdir("dtu_points"):
-        if file.endswith("97_total.ply"):
+        if file.endswith("65_total.ply"):
             print(file)
             render_dtu(f"dtu_points/{file}")

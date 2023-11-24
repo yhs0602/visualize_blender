@@ -102,7 +102,7 @@ def render_dtu(filename: str):
 
 
 if __name__ == "__main__":
-    for file in os.listdir("dtu20_cleaned"):
+    for file in os.listdir("cleaned_ablation_meshes"):
         if file.endswith("cleaned.ply"):
             print(file)
-            render_dtu(f"dtu20_cleaned/{file}")
+            render_dtu(f"cleaned_ablation_meshes/{file}")
