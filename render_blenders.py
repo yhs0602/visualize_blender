@@ -22,14 +22,14 @@ if __name__ == "__main__":
     #     blender_num=blender_nums["materials"],
     # )
     # for each blender plies
-    for file in os.listdir("blender_ply"):
-        if file.endswith("chair.ply") or file.endswith("mic.ply"):
-            print(file)
-            # obj = file.split("-")[-1].split("_")[0]
-            obj = file.split(".")[0]
-            print(obj)
+    for file in os.listdir("new_blender_ply"):
+        print(file)
+        obj = file.split("-")[-1].split("_")[0]
+        # obj = file.split(".")[0]
+        print(obj)
+        if file.endswith(".ply"):
             render_mesh(
-                filename=f"blender_ply/{file}",
+                filename=f"new_blender_ply/{file}",
                 blender_num=blender_nums[obj],
                 # camera_angle_x=camera_angle_x
             )

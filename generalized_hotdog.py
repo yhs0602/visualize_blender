@@ -64,7 +64,7 @@ def render_mesh(
     mesh.compute_vertex_normals()
     # Render the mesh
     vis = o3d.visualization.Visualizer()
-    vis.create_window()
+    vis.create_window(window_name=filename)
     vis.add_geometry(mesh)
     view_control = vis.get_view_control()
     view_control.change_field_of_view(camera_angle_y)

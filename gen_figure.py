@@ -41,7 +41,7 @@ def main():
                 print(f"File {img_path} not found. Skipping.")
 
     # Save the final image
-    final_image_path = "/mnt/data/compiled_figure.png"
+    final_image_path = "./compiled_figure.png"
     final_image.save(final_image_path)
 
 
