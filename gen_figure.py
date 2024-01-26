@@ -1,6 +1,9 @@
 from PIL import Image
 
 
+# 이 스크립트는 'indices_dict'에 정의된 객체 이름과 인덱스를 사용하여 여러 개의 이미지 파일을 로드하고, 이들을 하나의 큰 이미지에 그리드 형태로 병합합니다.
+# 각각의 이미지는 256x256 픽셀 크기로 가정하며, 이 크기가 맞지 않는 경우 이미지는 해당 크기로 조정됩니다.
+# 최종 이미지는 각 객체 별로 열에 배치되고, 'compiled_figure.png'라는 파일명으로 저장됩니다.
 # Define the path format for the images
 def get_image_path(object_name, index):
     return f"./{object_name}_{index}.png"
