@@ -48,6 +48,9 @@ def clean_mesh(path: str):
 
 
 if __name__ == "__main__":
-    for file in os.listdir("/Users/yanghyeonseo/ablation/meshes"):
-        if file.endswith(".ply") and "material" in file:
-            clean_mesh(f"/Users/yanghyeonseo/ablation/meshes/{file}")
+    for file in [
+        "/Users/yanghyeonseo/gitprojects/visualize_blender/activenerf20-scan97_new.ply",
+        "/Users/yanghyeonseo/gitprojects/visualize_blender/activenerf20-scan118_new.ply",
+    ]:
+        # if file.endswith(".ply") and "material" in file:
+        clean_mesh(file)
