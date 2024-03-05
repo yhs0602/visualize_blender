@@ -3,3 +3,4 @@ done_ply
 cleaned_ply
 venv
 *.obj
+*.pyc
