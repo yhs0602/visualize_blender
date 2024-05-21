@@ -4,3 +4,4 @@ cleaned_ply
 venv
 *.obj
 *.pyc
+.DS_Store
